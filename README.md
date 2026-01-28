@@ -45,6 +45,17 @@ For a concise overview of routes, folders, and conventions, see [docs/PROJECT.md
 
 The app deploys via **GitHub Actions** (see [.github/workflows/deploy.yml](.github/workflows/deploy.yml)). The site is served at `https://<owner>.github.io/<repo>/` (e.g. [unique-homes-lajares.github.io/unique-homes/](https://unique-homes-lajares.github.io/unique-homes/)).
 
+### Environment variables for deploy
+
+The build uses Supabase env vars that are **not** committed (see `.env` locally). For GitHub Actions you must add them as **repository secrets**:
+
+1. In the repo: **Settings → Secrets and variables → Actions**.
+2. **New repository secret** for each:
+   - **Name:** `VITE_SUPABASE_URL` — **Value:** your Supabase project URL (same as in `.env`).
+   - **Name:** `VITE_SUPABASE_PUBLISHABLE_KEY` — **Value:** your Supabase anon/public key (same as in `.env`).
+
+The workflow passes these into the build step so the deployed app can call Supabase. If they are missing, the build still runs but the app will have no Supabase connection in production.
+
 **If you see a white page:**
 
 1. **Use “GitHub Actions” as the Pages source**  

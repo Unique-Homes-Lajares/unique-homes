@@ -63,11 +63,21 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Ensure Supabase secrets are set
+        run: |
+          if [ -z "${{ secrets.VITE_SUPABASE_URL }}" ] || [ -z "${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}" ]; then
+            echo "::error::Add repository secrets in Settings → Secrets and variables → Actions: VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY"
+            exit 1
+          fi
+
       - name: Set BASE_PATH (lowercase for GitHub URLs)
         run: echo "BASE_PATH=/$(echo ${{ github.event.repository.name }} | tr '[:upper:]' '[:lower:]')/" >> $GITHUB_ENV
 
       - name: Build
         run: npm run build
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
 
       - name: SPA fallback (404.html)
         run: cp dist/index.html dist/404.html
