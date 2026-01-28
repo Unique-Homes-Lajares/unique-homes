@@ -1,0 +1,337 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Maison Neue Font Family */
+@font-face {
+  font-family: "Maison Neue";
+  src: url("/fonts/MaisonNeue-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maison Neue";
+  src: url("/fonts/MaisonNeue-Book.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maison Neue";
+  src: url("/fonts/MaisonNeue-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maison Neue Mono";
+  src: url("/fonts/MaisonNeue-Mono.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    /* Diptyque-inspired warm ivory palette */
+    --background: 42 40% 97%;
+    --foreground: 30 10% 12%;
+
+    --card: 42 35% 99%;
+    --card-foreground: 30 10% 12%;
+
+    --popover: 42 40% 97%;
+    --popover-foreground: 30 10% 12%;
+
+    --primary: 30 10% 12%;
+    --primary-foreground: 42 40% 97%;
+
+    --secondary: 38 30% 94%;
+    --secondary-foreground: 30 10% 12%;
+
+    --muted: 38 25% 93%;
+    --muted-foreground: 30 10% 12%;
+
+    --accent: 38 30% 94%;
+    --accent-foreground: 30 10% 12%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 36 25% 88%;
+    --input: 36 25% 88%;
+    --ring: 30 10% 12%;
+
+    --radius: 0px;
+
+    /* Diptyque custom tokens */
+    --soft: 42 30% 96%;
+    --line: 36 25% 88%;
+    --ink: 30 10% 12%;
+    --cream: 42 40% 97%;
+    --warm-white: 42 35% 99%;
+    --gold: 38 45% 50%;
+    --gold-light: 38 40% 70%;
+
+    /* Typography */
+    --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    --font-text:
+      "Maison Neue", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+    /* Shadows - subtle and refined */
+    --shadow-soft: 0 20px 50px rgba(45, 35, 25, 0.04);
+    --shadow-card: 0 2px 12px rgba(45, 35, 25, 0.03);
+    --shadow-elegant: 0 30px 60px rgba(45, 35, 25, 0.06);
+
+    /* Sidebar */
+    --sidebar-background: 42 40% 97%;
+    --sidebar-foreground: 30 8% 45%;
+    --sidebar-primary: 30 10% 12%;
+    --sidebar-primary-foreground: 42 40% 97%;
+    --sidebar-accent: 38 30% 94%;
+    --sidebar-accent-foreground: 30 10% 12%;
+    --sidebar-border: 36 25% 88%;
+    --sidebar-ring: 30 10% 12%;
+  }
+
+  .dark {
+    --background: 0 0% 7%;
+    --foreground: 40 33% 97%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 40 33% 97%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 40 33% 97%;
+
+    --primary: 40 33% 97%;
+    --primary-foreground: 0 0% 7%;
+
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 40 33% 97%;
+
+    --muted: 0 0% 14%;
+    --muted-foreground: 40 6% 65%;
+
+    --accent: 0 0% 14%;
+    --accent-foreground: 40 33% 97%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 40 33% 97%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 40 33% 97%;
+
+    --soft: 0 0% 12%;
+    --line: 0 0% 18%;
+    --ink: 40 33% 97%;
+    --cream: 0 0% 7%;
+    --warm-white: 0 0% 10%;
+
+    --sidebar-background: 0 0% 7%;
+    --sidebar-foreground: 40 33% 97%;
+    --sidebar-primary: 40 33% 97%;
+    --sidebar-primary-foreground: 0 0% 7%;
+    --sidebar-accent: 0 0% 14%;
+    --sidebar-accent-foreground: 40 33% 97%;
+    --sidebar-border: 0 0% 18%;
+    --sidebar-ring: 40 33% 97%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-text);
+    letter-spacing: 0.01em;
+    position: relative;
+  }
+
+  /* Grain effect disabled for testing
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+  */
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: 400;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-[1120px] lg:max-w-[1200px] xl:max-w-[1280px] mx-auto px-6 md:px-8 lg:px-10;
+  }
+
+  .section-card {
+    @apply bg-card shadow-card overflow-hidden rounded-2xl;
+  }
+
+  .section-card-inner {
+    @apply p-5 md:p-12;
+  }
+
+  .kicker {
+    font-family: var(--font-text);
+    @apply text-[10px] md:text-[11px] tracking-[0.20em] md:tracking-[0.24em] text-muted-foreground mb-4 md:mb-5 uppercase font-normal;
+  }
+
+  .heading-display {
+    font-family: var(--font-display);
+    @apply text-[36px] md:text-6xl lg:text-7xl xl:text-8xl leading-[1.05] md:leading-[1.02] tracking-[-0.02em] font-light;
+  }
+
+  .heading-section {
+    font-family: var(--font-display);
+    @apply text-[30px] md:text-5xl lg:text-[56px] xl:text-[60px] leading-[1.1] md:leading-[1.05] tracking-[-0.02em] font-light;
+  }
+
+  .text-body {
+    @apply text-base md:text-lg leading-[1.7] text-muted-foreground font-light tracking-normal;
+  }
+
+  .chip {
+    @apply inline-flex items-center px-4 md:px-5 py-2 md:py-2.5 border border-foreground/10 bg-cream/50 text-[9px] md:text-[10px] tracking-[0.16em] md:tracking-[0.18em] font-normal text-foreground/70 rounded-full cursor-default select-none;
+  }
+
+  .link-arrow {
+    @apply text-[10px] md:text-[11px] uppercase tracking-[0.18em] md:tracking-[0.20em] text-foreground hover:text-muted-foreground transition-colors duration-500;
+  }
+
+  .nav-link {
+    @apply text-[10px] md:text-[11px] uppercase tracking-[0.24em] text-ink hover:text-ink/70 transition-colors duration-500;
+  }
+
+  /* Diptyque-style thin border frame for images */
+  .image-frame {
+    @apply relative;
+  }
+
+  .image-frame::before {
+    content: "";
+    @apply absolute inset-3 md:inset-4 border border-foreground/10 pointer-events-none z-10;
+  }
+
+  /* Elegant separator */
+  .separator-elegant {
+    @apply w-12 h-px bg-foreground/20 mx-auto;
+  }
+}
+
+/* Handwritten artistic underline */
+.underline-handwritten {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-handwritten::after {
+  content: "";
+  position: absolute;
+  left: -4%;
+  right: -4%;
+  bottom: 0.08em;
+  height: 0.18em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 10' preserveAspectRatio='none'%3E%3Cpath d='M3 6 Q 50 4, 100 5.5 Q 150 7, 197 5' stroke='%23352e28' stroke-width='2.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")
+    no-repeat center;
+  background-size: 100% 100%;
+  pointer-events: none;
+  animation:
+    underline-draw 0.6s ease-out forwards,
+    underline-breathe 3s ease-in-out 0.6s infinite;
+  transform-origin: left center;
+}
+
+@keyframes underline-draw {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes underline-breathe {
+  0%,
+  100% {
+    transform: scaleX(1) rotate(0deg);
+  }
+  50% {
+    transform: scaleX(1.02) rotate(0.3deg);
+  }
+}
+
+@layer utilities {
+  .animation-fade-up {
+    animation: fadeUp 0.8s ease-out forwards;
+  }
+
+  .animation-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}

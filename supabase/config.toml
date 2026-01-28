@@ -1,0 +1,4 @@
+project_id = "bhgnxlvuhmyjhekmilew"
+
+[functions.get-bali-availability]
+verify_jwt = false
