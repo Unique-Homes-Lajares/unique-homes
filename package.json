@@ -10,6 +10,7 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
+    "preview:gh": "BASE_PATH=/unique-homes/ npm run build && npm run preview",
     "test": "vitest",
     "test:run": "TZ=UTC vitest run",
     "test:coverage": "vitest run --coverage"

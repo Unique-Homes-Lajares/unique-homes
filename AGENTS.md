@@ -166,6 +166,7 @@ When suggesting or writing commit messages, always pick the appropriate gitmoji 
 - **`npm run build`** – Type-check and build
 - **`npm run lint`** – ESLint
 - **`npm run preview`** – Preview production build
+- **`npm run preview:gh`** – Build with GitHub Pages base path and preview (open `/unique-homes/` on the shown URL)
 - **`npm run test`** – Run tests (Vitest watch)
 - **`npm run test:run`** – Run tests once (used in CI and pre-push)
 - **`npm run test:coverage`** – Run tests with coverage
