@@ -40,6 +40,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Test
+        run: npm run test:run
+
       - name: Set BASE_PATH (lowercase for GitHub URLs)
         run: echo "BASE_PATH=/$(echo ${{ github.event.repository.name }} | tr '[:upper:]' '[:lower:]')/" >> $GITHUB_ENV
 
