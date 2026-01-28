@@ -156,7 +156,7 @@ Examples:
 - `:memo: Update README and move Lovable docs to docs/lovable.md`
 - `:sparkles: Add villa editorialIntro and triptych to i18n types`
 
-When suggesting or writing commit messages, always pick the appropriate gitmoji (e.g. `:tada:` init, `:sparkles:` feat, `:bug:` fix, `:memo:` docs, `:lipstick:` style, `:recycle:` refactor, `:construction_worker:` CI/build).
+When suggesting or writing commit messages, use the **exact purpose** from [gitmoji.dev](https://gitmoji.dev). Use `:memo:` for documentation (README, PROJECT.md, etc.); **do not** use `:lipstick:` for README or docs—`:lipstick:` is for UI and style files (CSS, component visuals) only. Use `:hammer:` for dev scripts (e.g. npm scripts), `:sparkles:` for new features, `:bug:` for fixes, `:recycle:` for refactors, `:construction_worker:` for CI/build.
 
 ---
 
