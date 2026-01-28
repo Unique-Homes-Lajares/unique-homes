@@ -25,7 +25,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  test:
+    name: Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -40,10 +41,27 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Test
+      - name: Run tests
         run: npm run test:run
         env:
           TZ: UTC
+
+  build:
+    name: Build
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Set BASE_PATH (lowercase for GitHub URLs)
         run: echo "BASE_PATH=/$(echo ${{ github.event.repository.name }} | tr '[:upper:]' '[:lower:]')/" >> $GITHUB_ENV
