@@ -28,7 +28,13 @@ const App = () => (
             <Toaster />
             <Sonner />
             <AvailabilityModal />
-            <BrowserRouter>
+            <BrowserRouter
+              basename={
+                import.meta.env.BASE_URL === "/"
+                  ? "/"
+                  : import.meta.env.BASE_URL.replace(/\/$/, "")
+              }
+            >
               <CookieBanner />
               <ScrollToTop />
               <Routes>
