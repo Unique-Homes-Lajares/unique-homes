@@ -42,6 +42,8 @@ jobs:
 
       - name: Test
         run: npm run test:run
+        env:
+          TZ: UTC
 
       - name: Set BASE_PATH (lowercase for GitHub URLs)
         run: echo "BASE_PATH=/$(echo ${{ github.event.repository.name }} | tr '[:upper:]' '[:lower:]')/" >> $GITHUB_ENV
